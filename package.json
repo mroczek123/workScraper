@@ -1,0 +1,21 @@
+{
+  "name": "workscraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maciej Kulesza",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^14.10.1",
+    "axios": "^0.20.0"
+  },
+  "devDependencies": {
+    "ts-loader": "^8.0.3",
+    "typescript": "^4.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

@@ -1,0 +1,5 @@
+{
+    //javascript settings
+    "javascript.validate.enable": true,
+    "editor.tabSize": 2,
+}

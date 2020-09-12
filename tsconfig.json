@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "sourceMap": true,
+    "alwaysStrict": true,
+    "strict": true,
+    "lib": ["ES2020"],
+    "paths": {
+      "@src/*": ["src/*"],
+      "@models": ["src/models"]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
