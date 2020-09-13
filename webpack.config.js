@@ -9,7 +9,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
-    extensions: ['.ts'],
+    extensions: ['.ts', '.js'],
     alias: { // KEEP IN SYNC WITH tsconfig.json.compilerOptions.paths !
       '@src': path.resolve(__dirname, 'src'),
       '@models': path.resolve(__dirname, 'src', 'models')
@@ -18,7 +18,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: '/\.ts$/',
+        test: /\.ts$/,
         use: 'ts-loader'
       }
     ]
