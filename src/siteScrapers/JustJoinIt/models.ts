@@ -8,15 +8,15 @@ enum SkillLevel {
 enum ExperienceLevel {
   JUNIOR = "junior",
   MID = "mid",
-  SENIOR = "senior"
+  SENIOR = "senior",
 }
 
 enum SalaryCurrency {
-  PLN = "pln"
+  PLN = "pln",
 }
 
 enum EmploymentType {
-  B2B = "b2b"
+  B2B = "b2b",
 }
 
 interface JustJoinItSkill {
@@ -99,7 +99,8 @@ export class JustJoinItJobOfferSimple {
   }
 }
 
-export interface JustJoinItJobOfferDetailResponse extends JustJoinItJobOfferSimpleResponse {
+export interface JustJoinItJobOfferDetailResponse
+  extends JustJoinItJobOfferSimpleResponse {
   apply_body: unknown;
   apply_url: string;
   body: string;

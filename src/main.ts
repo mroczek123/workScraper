@@ -8,6 +8,10 @@ class ConsoleLogCollector extends Collector {
   }
 }
 
-const jjitScraper = new Scraper({explorer: new JustJoinItExplorer, extractor: new JustJoinItExtractor, collector: new ConsoleLogCollector})
+const jjitScraper = new Scraper({
+  explorer: new JustJoinItExplorer(),
+  extractor: new JustJoinItExtractor(),
+  collector: new ConsoleLogCollector(),
+});
 
 jjitScraper.scrap();

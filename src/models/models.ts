@@ -15,17 +15,22 @@ export class Scraper {
   private extractor: Extractor;
   private collector: Collector;
 
-  constructor(data: {explorer: Explorer, extractor: Extractor, collector: Collector}) {
+  constructor(data: {
+    explorer: Explorer;
+    extractor: Extractor;
+    collector: Collector;
+  }) {
     this.explorer = data.explorer;
     this.extractor = data.extractor;
     this.collector = data.collector;
   }
-  
+
   async scrap() {
     let urls = await this.explorer.getUrls();
     urls.forEach((url) => {
-      this.extractor.extract(url)
-        .then((normalizedData) => this.collector.collect(normalizedData))
+      this.extractor
+        .extract(url)
+        .then((normalizedData) => this.collector.collect(normalizedData));
     });
   }
 }
