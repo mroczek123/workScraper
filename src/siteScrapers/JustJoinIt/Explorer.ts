@@ -1,4 +1,4 @@
-import { Explorer } from "@models";
+import { Explorer } from "@src/models/models";
 import { JustJoinItJobOfferSimple, JustJoinItJobOfferSimpleResponse } from "./models";
 import axios from 'axios';
 

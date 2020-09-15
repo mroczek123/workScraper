@@ -1,4 +1,4 @@
-import { Extractor } from "@models";
+import { Extractor } from "@src/models/models";
 import { JustJoinItJobOfferDetail } from "./models";
 import axios from "axios";
 

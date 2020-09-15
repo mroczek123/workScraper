@@ -1,6 +1,6 @@
-import { Scraper, Collector } from "@models";
-import JustJoinItExplorer from "@src/siteScrapers/JustJoinIt/Explorer";
-import JustJoinItExtractor from "@src/siteScrapers/JustJoinIt/Extractor";
+import { Scraper, Collector } from "@src/models/models";
+import JustJoinItExplorer from "@src/siteScrapers/justJoinIt/Explorer";
+import JustJoinItExtractor from "@src/siteScrapers/justJoinIt/Extractor";
 
 class ConsoleLogCollector extends Collector {
   collect(data: any): void {
