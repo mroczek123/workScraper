@@ -10,7 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: [".ts", ".tsx", ".js"],
     alias: {
       // KEEP IN SYNC WITH tsconfig.json.compilerOptions.paths !
       "@src": path.resolve(__dirname, "src"),
