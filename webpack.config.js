@@ -1,19 +1,19 @@
-const path = require("path");
-const webpack = require("webpack");
-const nodeExternals = require('webpack-node-externals');
+import * as path from "path";
+import * as webpack from "webpack";
+import * as nodeExternals from "webpack-node-externals";
 
 module.exports = {
   entry: {
-    apiServer: "./src/backend/api-server/src/main.ts",
-    scraper: "./src/backend/scraper/main.ts",
+    apiServer: "./src/api-server/src/main.ts",
+    scraper: "./src/scraper/main.ts",
     frontend: "./src/frontend/main.ts"
   },
   mode: "development",
   target: "node",
-  externals: [nodeExternals()],
+  externals: [nodeExternals()], // for compability with nest.js
   devtool: "inline-source-map",
   output: {
-    filename: "[name].js",
+    filename: "[name]/main.js",
     path: path.resolve(__dirname, "dist"),
   },
   resolve: {
@@ -32,14 +32,13 @@ module.exports = {
     ],
   },
   plugins: [
+    // for compability with nest.js
     new webpack.IgnorePlugin({
       checkResource(resource) {
         const lazyImports = [
           '@nestjs/microservices',
-          // ADD THIS
           '@nestjs/microservices/microservices-module',
           '@nestjs/websockets',
-          // AND THIS
           '@nestjs/websockets/socket-module',
           '@nestjs/platform-express',
           'cache-manager',

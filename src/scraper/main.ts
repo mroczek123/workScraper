@@ -1,4 +1,4 @@
-import JustJoinItScraper from "@src/backend/scraper/sites/just-join-it/scraper";
+import JustJoinItScraper from "@src/scraper/sites/just-join-it/scraper";
 import { url } from "@src/packages/common/types";
 import Collector from "./collector";
 

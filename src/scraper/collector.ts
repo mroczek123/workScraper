@@ -1,6 +1,6 @@
 import { Collection, Db, MongoClient } from "mongodb";
-import { JobOffer } from "../../packages/offers/models";
-import settings from "@src/backend/settings";
+import { JobOffer } from "@src/packages/offers/models";
+import settings from "@src/settings";
 
 export default class Collector {
   public static collect(jobOffers: Array<JobOffer>): void {
