@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "./tsc_build",
     "sourceMap": true,
     "alwaysStrict": true,
+    "moduleResolution": "node",
     "strict": true,
-    "lib": ["ES2020", "DOM"],
+    "jsx": "react",
+    "target": "ES2020",
+    "experimentalDecorators": true,
+    "lib": ["DOM"],
     "paths": {
-      "@src/*": ["src/*"],
-      "@models": ["src/models"]
+      "@src/*": ["src/*"]
     }
   },
   "exclude": ["node_modules"]

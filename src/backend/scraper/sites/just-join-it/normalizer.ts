@@ -1,6 +1,6 @@
 import { url } from "@src/packages/common/types";
 import { Currency } from "@src/packages/currencies/models";
-import { Salary, Skill, Seniority, JobOffer, Location, EmploymentType } from "../../offers/models";
+import { Salary, Skill, Seniority, JobOffer, Location, EmploymentType } from "../../../../packages/offers/models";
 import { Currency as JJITCurrency, JobOfferDetailResponse, SkillLevel, EmploymentType as JJITEmploymentType, ExperienceLevel } from "./data-definitions";
 
 

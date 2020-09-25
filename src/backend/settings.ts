@@ -1,10 +1,10 @@
 const settings = {
-  databases: {
-    jobOffers: {
-      type: "mongoDb",
-      uri: "",
-      name: ""
-    }
+  database: {
+    type: "mongoDb",
+    uri: "",
+    dbName: "",
+    collectionName: "jobOffers",
+    name: ""
   }
 }
 

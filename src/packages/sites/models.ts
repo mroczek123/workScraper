@@ -1,4 +1,4 @@
-import { url } from "@src/common/types";
+import { url } from "../common/types";
 
 export abstract class Endpoint {
   abstract url: url;
