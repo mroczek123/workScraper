@@ -1,18 +1,26 @@
-import JustJoinItScraper from "@src/scraper/sites/just-join-it/scraper";
-import { url } from "@src/packages/common/types";
-import Collector from "./collector";
+import JustJoinItScraper from '@src/scraper/sites/just-join-it/scraper';
+import { merge, Observable, Subscription } from 'rxjs';
+import Collector from './collector';
 
-class Orchestrator {
-  
-  public static updateJobOffers() {
-    /**
-     * Create job Scrapers, pass data from job scrapers to collectors and so on
-     */
-    const collectors = [new Collector()];
-    JustJoinItScraper.scrap([]).then();
-  }
+function main(): Observable<void> {
+  return new Observable(subscriber => {
+    const scrapersObservable = merge(
+      new JustJoinItScraper().scrap()
+    );
+    scrapersObservable.subscribe({
+      next: (jobOffers) => Collector.collect(jobOffers),
+      complete: () => subscriber.complete()
+    })
+  })
+}
 
-  private makeScrapers(urls: Array<url>) {
-    return [JustJoinItScraper.scrap([])]
+function closeIfSubscriptionClosed(subscription: Subscription) {
+  if (!subscription.closed) {
+    setTimeout(() => closeIfSubscriptionClosed(subscription), 1000)
+  } else {
+    process.exit()
   }
 }
+
+const subscription = main().subscribe();
+closeIfSubscriptionClosed(subscription);

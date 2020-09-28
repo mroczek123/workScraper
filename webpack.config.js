@@ -1,6 +1,6 @@
-import * as path from "path";
-import * as webpack from "webpack";
-import * as nodeExternals from "webpack-node-externals";
+const path = require("path");
+const webpack = require("webpack");
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
   entry: {
@@ -45,7 +45,7 @@ module.exports = {
           'class-validator',
           'class-transformer',
         ];
-  
+
         if (!lazyImports.includes(resource)) {
           return false;
         }

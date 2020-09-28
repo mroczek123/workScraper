@@ -1,98 +1,60 @@
 import { url } from "@src/packages/common/types";
-import { Currency } from "@src/packages/currencies/models";
-import { Salary, Skill, Seniority, JobOffer, Location, EmploymentType } from "../../../../packages/offers/models";
-import { Currency as JJITCurrency, JobOfferDetailResponse, SkillLevel, EmploymentType as JJITEmploymentType, ExperienceLevel } from "./data-definitions";
+import { Salary, Skill, JobOffer, Location } from "@src/packages/offers/models";
+import { JobOfferDetailResponse } from "./data-definitions";
+import { currencyToNormalizedCurrencyMap, employmentTypeToNormalizedEmploymentTypeMap, experienceLevelToNormalizedSeniorityMap, skillLevelToNormalizedSeniorityMap } from "./normalizer-mappings";
 
 
-export function normalize(data: JobOfferDetailResponse, url: url): Promise<JobOffer> {
-  return new Promise((resove, reject) => {
-    const normalized: JobOffer = {
-      url: url,
-      title: data.title,
-      description: data.body,
-      skills: normalizeSkills(data),
-      salary: normalizeSalary(data),
-      location: normalizeLocation(data),
-      seniority: normalizeSeniority(data),
-      publishedAt: new Date(data.published_at),
-      companyName: data.company_name,
-      remote: data.remote,
-      remoteInterview: data.remote_interview
-    }
-    return normalized;
-  })
+export default function normalize(data: JobOfferDetailResponse, url: url): JobOffer {
+  const normalized: JobOffer = {
+    url: url,
+    title: data.title,
+    description: data.body,
+    skills: normalizeSkills(data),
+    salaries: normalizeSalary(data),
+    locations: normalizeLocation(data),
+    seniority: [experienceLevelToNormalizedSeniorityMap[data.experience_level]],
+    publishedAt: new Date(data.published_at),
+    companyName: data.company_name,
+    remote: data.remote,
+    remoteInterview: data.remote_interview
+  }
 
+  return normalized;
   function normalizeSkills(data: JobOfferDetailResponse): Array<Skill> {
-    function convertSkillLevelToSeniority(skillLevel: SkillLevel): Seniority {
-      switch(skillLevel) {
-        case SkillLevel.JUNIOR:
-          return Seniority.JUNIOR;
-        case SkillLevel.MID:
-          return Seniority.MID
-        case SkillLevel.SENIOR:
-        case SkillLevel.EXPERT:
-          return Seniority.SENIOR
-      }
-    }
     return data.skills.map((skill) => {
       const normalizedSkill: Skill = {
         name: skill.name,
-        level: convertSkillLevelToSeniority(skill.level)
+        level: skillLevelToNormalizedSeniorityMap[skill.level]
       }
       return normalizedSkill;
     })
   }
 
-  function normalizeSalary(data: JobOfferDetailResponse): Salary {
-    function normalizeEmploymentType(employmentType: JJITEmploymentType): EmploymentType {
-      switch(employmentType) {
-        case JJITEmploymentType.B2B:
-          return EmploymentType.B2B
-        case JJITEmploymentType.MANDATE_CONTRACT:
-          return EmploymentType.MANDATE_CONTRACT
-        case JJITEmploymentType.PERMANENT:
-          return EmploymentType.PERMANENT
+  function normalizeSalary(data: JobOfferDetailResponse): Array<Salary> {
+    const output: Array<Salary> = [];
+
+    if (data.salary_from && data.salary_to && data.salary_currency && data.employment_type) {
+      const salary: Salary = {
+        from: data.salary_from,
+        to: data.salary_to,
+        currency: currencyToNormalizedCurrencyMap[data.salary_currency],
+        employmentType: employmentTypeToNormalizedEmploymentTypeMap[data.employment_type]
       }
+      output.push(salary);
     }
-
-    // TODO: implement
-    function normalizeCurrency(currency: JJITCurrency): Currency {
-      return Currency.PLN
-    }
-
-    const salary: Salary = {
-      from: data.salary_from,
-      to: data.salary_to,
-      currency: normalizeCurrency(data.salary_currency), // TODO: WRITE CONVERTER
-      employmentType: normalizeEmploymentType(data.employment_type)
-    }
-  
-    return salary;
+    return output;
   }
-  
 
-  function normalizeLocation(data: JobOfferDetailResponse): Location {
-    return {
+  function normalizeLocation(data: JobOfferDetailResponse): Array<Location> {
+    const loc: Location = {
       city: data.city,
       street: data.street,
       countryCode: data.country_code,
-      // TODO: implement
       coordinates: {
-        latitude: 0,
-        longitude: 0
+        latitude: parseFloat(data.latitude),
+        longitude: parseFloat(data.longitude)
       }
     }
-  }
-  
-  // TODO: implement
-  function normalizeSeniority(data: JobOfferDetailResponse): Seniority {
-    switch(data.experience_level) {
-      case ExperienceLevel.JUNIOR:
-        return Seniority.JUNIOR
-      case ExperienceLevel.MID:
-        return Seniority.MID
-      case ExperienceLevel.SENIOR:
-        return Seniority.SENIOR
-    }
+    return [loc]
   }
 }

@@ -7,9 +7,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "scraper",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}\\dist\\main.js",
+      "program": "${workspaceFolder}\\dist\\\\scraper\\main.js",
       "sourceMaps": true
     }
   ]

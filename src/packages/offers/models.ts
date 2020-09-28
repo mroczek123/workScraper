@@ -4,14 +4,14 @@ import { Currency } from "@src/packages/currencies/models";
 
 export enum EmploymentType {
   B2B = "b2b",
-  PERMANENT = "permanent", // Contract of Employment
-  MANDATE_CONTRACT = "mandate_contract", // Contract of Mandate
+  PERMANENT = "permanent",
+  MANDATE_CONTRACT = "mandate_contract",
 }
 
 export interface Salary {
   from: number;
   to: number;
-  currency: Currency;
+  currency?: Currency;
   employmentType: EmploymentType;
 }
 
@@ -26,6 +26,7 @@ export enum Seniority {
   JUNIOR = "junior",
   MID = "mid",
   SENIOR = "senior",
+  EXPERT = "expert"
 }
 
 export interface Skill {
@@ -38,8 +39,8 @@ export interface JobOffer {
   title: string;
   description: html;
   skills: Array<Skill>;
-  salary: Array<Salary>;
-  location: Array<Location>;
+  salaries: Array<Salary>;
+  locations: Array<Location>;
   seniority: Array<Seniority>;
   publishedAt: Date;
   companyName: string;

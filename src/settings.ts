@@ -1,10 +1,7 @@
 const settings = {
   database: {
-    type: "mongoDb",
-    uri: "",
-    dbName: "",
-    collectionName: "jobOffers",
-    name: ""
+    uri: "mongodb://localhost:27017/?readPreference=primary&appname=testing&ssl=false",
+    dbName: "workScraper",
   }
 }
 
