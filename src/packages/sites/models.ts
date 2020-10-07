@@ -1,12 +1,10 @@
-import { url } from "../common/types";
+import { JobOfferDetailed, JobOfferSimple } from "../offers/models";
 
 export abstract class Endpoint {
-  abstract url: url;
   abstract getResponse(data: any): Promise<any>;
 }
 
 export abstract class Site {
-  abstract url: url;
-  abstract getAllOffers(data: any): Promise<any>;
-  abstract getOfferDetails(data: any): Promise<any>;
+  abstract getOffers(data: any): Promise<Array<JobOfferSimple>>;
+  abstract getOfferDetails(data: any): Promise<Array<JobOfferDetailed>>;
 }

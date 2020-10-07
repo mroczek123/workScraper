@@ -1,11 +1,11 @@
 import { url } from "@src/packages/common/types";
-import { Salary, Skill, JobOffer, Location } from "@src/packages/offers/models";
+import { Salary, Skill, JobOfferDetailed, Location } from "@src/packages/offers/models";
 import { JobOfferDetailResponse } from "./data-definitions";
 import { currencyToNormalizedCurrencyMap, employmentTypeToNormalizedEmploymentTypeMap, experienceLevelToNormalizedSeniorityMap, skillLevelToNormalizedSeniorityMap } from "./normalizer-mappings";
 
 
-export default function normalize(data: JobOfferDetailResponse, url: url): JobOffer {
-  const normalized: JobOffer = {
+export default function normalize(data: JobOfferDetailResponse, url: url): JobOfferDetailed {
+  const normalized: JobOfferDetailed = {
     url: url,
     title: data.title,
     description: data.body,

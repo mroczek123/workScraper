@@ -3,11 +3,12 @@
     "baseUrl": ".",
     "sourceMap": true,
     "alwaysStrict": true,
-    "moduleResolution": "node",
     "strict": true,
+    "moduleResolution": "node",
     "jsx": "react",
     "target": "ES2020",
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "lib": ["DOM"],
     "paths": {
       "@src/*": ["src/*"]

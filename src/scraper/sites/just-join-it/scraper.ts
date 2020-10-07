@@ -1,11 +1,11 @@
 import { url } from '@src/packages/common/types';
-import { Scraper } from '@src/packages/scrapers/models';
 import Axios, { AxiosResponse } from 'axios';
-import { JobOffer } from '@src/packages/offers/models';
+import { JobOfferDetailed } from '@src/packages/offers/models';
 import  normalize from './normalizer';
+import {Scraper} from "scraper";
 import { JobOfferSimpleResponse } from './data-definitions';
 
-export default class JustJoinItScraper extends Scraper<JobOffer> {
+export default class JustJoinItScraper extends Scraper<JobOfferDetailed> {
   normalizer = normalize
 
   async getAllUrls(): Promise<Array<url>> {

@@ -1,9 +1,9 @@
 import { Collection, Db, MongoClient } from "mongodb";
-import { JobOffer } from "@src/packages/offers/models";
+import { JobOfferDetailed } from "@src/packages/offers/models";
 import settings from "@src/settings";
 
 export default class Collector {
-  public static collect(jobOffers: Array<JobOffer>): void {
+  public static collect(jobOffers: Array<JobOfferDetailed>): void {
     connectToDb().then((databaseConnection) => {
       const collection = databaseConnection.collection("jobOffers");
       splitJobOffers(jobOffers, collection).then((splitted) => {
@@ -22,9 +22,9 @@ export default class Collector {
       })
     }
   
-    function splitJobOffers(jobOffers: Array<JobOffer>, dbCollection: Collection<JobOffer>): Promise<{inDb: Array<JobOffer>, notInDb: Array<JobOffer>}> {
+    function splitJobOffers(jobOffers: Array<JobOfferDetailed>, dbCollection: Collection<JobOfferDetailed>): Promise<{inDb: Array<JobOfferDetailed>, notInDb: Array<JobOfferDetailed>}> {
       return new Promise((resolve, reject) => {
-        const output: {inDb: Array<JobOffer>, notInDb: Array<JobOffer>} = {
+        const output: {inDb: Array<JobOfferDetailed>, notInDb: Array<JobOfferDetailed>} = {
           inDb: [],
           notInDb: []
         }
