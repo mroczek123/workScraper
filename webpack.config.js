@@ -6,7 +6,7 @@ module.exports = {
   entry: {
     apiServer: "./src/api-server/src/main.ts",
     scraper: "./src/scraper/main.ts",
-    frontend: "./src/frontend/main.ts"
+    frontend: "./src/frontend/main.ts",
   },
   mode: "development",
   target: "node",
@@ -20,7 +20,7 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js"],
     alias: {
       // KEEP IN SYNC WITH tsconfig.json.compilerOptions.paths !
-      "@src": path.resolve(__dirname, "src")
+      "@src": path.resolve(__dirname, "src"),
     },
   },
   module: {
@@ -36,14 +36,14 @@ module.exports = {
     new webpack.IgnorePlugin({
       checkResource(resource) {
         const lazyImports = [
-          '@nestjs/microservices',
-          '@nestjs/microservices/microservices-module',
-          '@nestjs/websockets',
-          '@nestjs/websockets/socket-module',
-          '@nestjs/platform-express',
-          'cache-manager',
-          'class-validator',
-          'class-transformer',
+          "@nestjs/microservices",
+          "@nestjs/microservices/microservices-module",
+          "@nestjs/websockets",
+          "@nestjs/websockets/socket-module",
+          "@nestjs/platform-express",
+          "cache-manager",
+          "class-validator",
+          "class-transformer",
         ];
 
         if (!lazyImports.includes(resource)) {
@@ -56,6 +56,6 @@ module.exports = {
         }
         return false;
       },
-    })
-  ]
+    }),
+  ],
 };

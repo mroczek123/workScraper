@@ -10,8 +10,8 @@ export default class Collector {
         if (splitted.notInDb.length > 0) {
           collection.insertMany(splitted.notInDb);
         }
-      })
-    })
+      });
+    });
 
     function connectToDb(): Promise<Db> {
       return new Promise(async (resolve, reject) => {
@@ -19,21 +19,24 @@ export default class Collector {
         await mongoClient.connect();
         const db = mongoClient.db(settings.database.dbName);
         resolve(db);
-      })
+      });
     }
-  
-    function splitJobOffers(jobOffers: Array<JobOfferDetailed>, dbCollection: Collection<JobOfferDetailed>): Promise<{inDb: Array<JobOfferDetailed>, notInDb: Array<JobOfferDetailed>}> {
+
+    function splitJobOffers(
+      jobOffers: Array<JobOfferDetailed>,
+      dbCollection: Collection<JobOfferDetailed>,
+    ): Promise<{ inDb: Array<JobOfferDetailed>; notInDb: Array<JobOfferDetailed> }> {
       return new Promise((resolve, reject) => {
-        const output: {inDb: Array<JobOfferDetailed>, notInDb: Array<JobOfferDetailed>} = {
+        const output: { inDb: Array<JobOfferDetailed>; notInDb: Array<JobOfferDetailed> } = {
           inDb: [],
-          notInDb: []
-        }
+          notInDb: [],
+        };
         const promises = jobOffers.map(async (jobOffer) => {
-          const found = Boolean(await dbCollection.findOne({url: jobOffer.url}))
-          found ? output.inDb.push(jobOffer) : output.notInDb.push(jobOffer)
-        })
-        Promise.all(promises).then(() => resolve(output))
-      })
+          const found = Boolean(await dbCollection.findOne({ url: jobOffer.url }));
+          found ? output.inDb.push(jobOffer) : output.notInDb.push(jobOffer);
+        });
+        Promise.all(promises).then(() => resolve(output));
+      });
     }
   }
 }

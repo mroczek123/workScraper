@@ -1,7 +1,11 @@
 import { Currency } from "@src/packages/currencies/models";
 import { JobOfferSimple, Location, Salary } from "@src/packages/offers/models";
 import { JustJoinItJobOfferSimple } from "./data-definitions/interfaces";
-import { currencyToNormalizedCurrencyMap, employmentTypeToNormalizedEmploymentTypeMap, experienceLevelToNormalizedSeniorityMap } from "./normalizer-mappings";
+import {
+  currencyToNormalizedCurrencyMap,
+  employmentTypeToNormalizedEmploymentTypeMap,
+  experienceLevelToNormalizedSeniorityMap,
+} from "./normalizer-mappings";
 
 export default function normalize(input: JustJoinItJobOfferSimple, url: string): JobOfferSimple {
   return {
@@ -11,15 +15,15 @@ export default function normalize(input: JustJoinItJobOfferSimple, url: string):
     salaries: normalizeSalary(input),
     company: {
       name: input.company_name,
-      logoUrl: input.company_logo_url
+      logoUrl: input.company_logo_url,
     },
     publishedAt: new Date(input.published_at),
     remote: input.remote,
     remoteInterview: input.remote_interview,
     locations: normalizeLocations(input),
     seniority: [experienceLevelToNormalizedSeniorityMap[input.experience_level]],
-    mainTechnology: input.marker_icon
-  }
+    mainTechnology: input.marker_icon,
+  };
 
   function normalizeSalary(input: JustJoinItJobOfferSimple): Array<Salary> {
     const output: Array<Salary> = [];
@@ -29,10 +33,12 @@ export default function normalize(input: JustJoinItJobOfferSimple, url: string):
     const salary: Salary = {
       from: input.salary_from,
       to: input.salary_to,
-      currency: input.salary_currency ? currencyToNormalizedCurrencyMap[input.salary_currency] : Currency.PLN,
-      employmentType: employmentTypeToNormalizedEmploymentTypeMap[input.employment_type]
-    }
-    output.push(salary)
+      currency: input.salary_currency
+        ? currencyToNormalizedCurrencyMap[input.salary_currency]
+        : Currency.PLN,
+      employmentType: employmentTypeToNormalizedEmploymentTypeMap[input.employment_type],
+    };
+    output.push(salary);
     return output;
   }
 
@@ -42,10 +48,10 @@ export default function normalize(input: JustJoinItJobOfferSimple, url: string):
       street: input.street,
       coordinates: {
         latitude: Number.parseFloat(input.latitude),
-        longitude: Number.parseFloat(input.longitude)
+        longitude: Number.parseFloat(input.longitude),
       },
-      countryCode: input.country_code ? input.country_code : "PL"
-    }
-    return [location]
+      countryCode: input.country_code ? input.country_code : "PL",
+    };
+    return [location];
   }
 }

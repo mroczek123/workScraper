@@ -17,10 +17,10 @@ interface JobsForGeekJobOfferSimple {
   b2bFrequency?: B2bFrequencyChoices;
   lat?: number;
   lng?: number;
-  experience: number;
+  experience: number; // in months
   onlineInterview?: boolean;
   employmentSalaryFrom?: number;
   employmentSalaryTo?: number;
   videoLink?: string;
   employmentFrequency?: EmploymentFrequencyChoices;
- }
+}

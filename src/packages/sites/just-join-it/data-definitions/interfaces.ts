@@ -1,4 +1,10 @@
-import { CountryCodeChoices, MarkerIconChoices, ExperienceLevelChoices, SalaryCurrencyChoices, EmploymentTypeChoices } from "./enums";
+import {
+  CountryCodeChoices,
+  MarkerIconChoices,
+  ExperienceLevelChoices,
+  SalaryCurrencyChoices,
+  EmploymentTypeChoices,
+} from "./enums";
 
 export interface JustJoinItJobOfferSimple {
   title: string;
@@ -28,4 +34,4 @@ export interface JustJoinItJobOfferSimple {
 interface Skills {
   name: string;
   level: number;
- }
+}

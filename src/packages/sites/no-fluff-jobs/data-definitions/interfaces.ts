@@ -1,4 +1,13 @@
-import { SeniorityChoices, RegionsChoices, FlavorsChoices, ReferralBonusCurrencyChoices, NameChoices, TypeChoices, CurrencyChoices, CountryCodeChoices } from "./enums";
+import {
+  SeniorityChoices,
+  RegionsChoices,
+  FlavorsChoices,
+  ReferralBonusCurrencyChoices,
+  NameChoices,
+  TypeChoices,
+  CurrencyChoices,
+  CountryCodeChoices,
+} from "./enums";
 
 export interface NoFluffJobsListResponse {
   postings: Array<NoFluffJobsJobOfferSimple>;

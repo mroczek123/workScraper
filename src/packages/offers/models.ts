@@ -42,7 +42,7 @@ export interface Location {
 
 export interface Skill {
   name: string;
-  level: Seniority
+  level: Seniority;
 }
 
 export enum Seniority {
@@ -50,12 +50,12 @@ export enum Seniority {
   JUNIOR = "junior",
   MID = "mid",
   SENIOR = "senior",
-  EXPERT = "expert"
+  EXPERT = "expert",
 }
 
 export enum EmploymentType {
   B2B = "b2b",
   PERMANENT = "permanent",
   MANDATE_CONTRACT = "mandate_contract",
-  UOD = "uod"
+  UOD = "uod",
 }

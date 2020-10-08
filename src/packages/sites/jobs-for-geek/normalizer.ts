@@ -1,8 +1,16 @@
-import { url } from "@src/packages/common/types";
-import { Currency } from "@src/packages/currencies/models";
-import { EmploymentType, JobOfferSimple, Location, Salary } from "@src/packages/offers/models";
+import { Currency } from "@src/packages/localization/currencies";
+import {
+  EmploymentType,
+  JobOfferSimple,
+  Location,
+  Salary,
+  Seniority,
+} from "@src/packages/offers/models";
 
-export default function normalizer(input: JobsForGeekJobOfferSimple, urlstring: url): JobOfferSimple {
+export default function normalizer(
+  input: JobsForGeekJobOfferSimple,
+  urlstring: url,
+): JobOfferSimple {
   return {
     id: input.id,
     url: urlstring,
@@ -16,8 +24,8 @@ export default function normalizer(input: JobsForGeekJobOfferSimple, urlstring: 
     remote: input.remoteType == RemoteTypeChoices.FULL_REMOTE_WORK,
     remoteInterview: input.onlineInterview ? input.onlineInterview : false,
     locations: normalizeLocations(input),
-    seniority: normalizeSeniority(),
-    mainTechnology:
+    seniority: normalizeSeniority(input),
+    mainTechnology: "", // TODO
   };
 
   function normalizeLocations(input: JobsForGeekJobOfferSimple): Array<Location> {
@@ -29,17 +37,18 @@ export default function normalizer(input: JobsForGeekJobOfferSimple, urlstring: 
       city: input.city,
       street: null,
       countryCode: input.country, // TODO: MAP TO COUNTRYCODE
-      coordinates: null
-    }
+      coordinates: null,
+    };
     if (input.lat && input.lng) {
       location.coordinates = {
         latitude: input.lat,
-        longitude: input.lng
-      }
+        longitude: input.lng,
+      };
     }
     output.push(location);
     return output;
   }
+
   function normalizeSalary(input: JobsForGeekJobOfferSimple): Array<Salary> {
     const output: Array<Salary> = [];
     if (!input.b2bSalaryFrom && !input.b2bSalaryTo) {
@@ -50,8 +59,21 @@ export default function normalizer(input: JobsForGeekJobOfferSimple, urlstring: 
       to: input.b2bSalaryTo ? input.b2bSalaryTo : null,
       currency: Currency.PLN,
       employmentType: EmploymentType.B2B,
-    }
+    };
     output.push(salary);
     return output;
+  }
+  function normalizeSeniority(input: JobsForGeekJobOfferSimple): Array<Seniority> {
+    const expMonths = input.experience;
+    if (expMonths < 0) {
+      return [Seniority.TRAINEE];
+    } else if (expMonths < 12) {
+      return [Seniority.JUNIOR];
+    } else if (expMonths < 36) {
+      return [Seniority.MID];
+    } else if (expMonths < 60) {
+      return [Seniority.SENIOR];
+    }
+    return [Seniority.EXPERT];
   }
 }
