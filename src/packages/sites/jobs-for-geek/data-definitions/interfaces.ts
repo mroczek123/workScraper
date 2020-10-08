@@ -1,5 +1,11 @@
 import { CountryNamesUpperCase } from "@src/packages/localization/country-codes";
-import { B2bFrequencyChoices, CategoryChoices, CityChoices, EmploymentFrequencyChoices, RemoteTypeChoices } from "./enums";
+import {
+  B2bFrequencyChoices,
+  CategoryChoices,
+  CityChoices,
+  EmploymentFrequencyChoices,
+  RemoteTypeChoices,
+} from "./enums";
 
 export interface JobsForGeekJobOfferSimple {
   id: number;

@@ -1,4 +1,7 @@
-import { convertToCountryCodeIso3166Alpha2, convertToCurrencyIso4217UpperCase } from "@src/packages/localization/converters";
+import {
+  convertToCountryCodeIso3166Alpha2,
+  convertToCurrencyIso4217UpperCase,
+} from "@src/packages/localization/converters";
 import { CountryCodeIso3166Alpha2 } from "@src/packages/localization/country-codes";
 import { JobOfferSimple, Location, Salary } from "@src/packages/offers/models";
 import { NoFluffJobsJobOfferSimple } from "./data-definitions/interfaces";

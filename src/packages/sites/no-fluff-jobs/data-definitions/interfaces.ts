@@ -6,7 +6,7 @@ import {
   FlavorsChoices,
   CountryNameCapitalCase,
   TypeChoices,
-  CategoryChoices
+  CategoryChoices,
 } from "./enums";
 
 export interface NoFluffJobsListResponse {

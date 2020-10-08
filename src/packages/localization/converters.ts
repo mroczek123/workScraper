@@ -6,10 +6,10 @@ export function convertToCountryCodeIso3166Alpha2(input: string): CountryCodeIso
   /**
    * supports inputs: iso3166Alpha3, full country name
    */
-  return CountryCodeIso3166Alpha2.Poland
+  return CountryCodeIso3166Alpha2.Poland;
 }
 
 // TODO !
 export function convertToCurrencyIso4217UpperCase(input: string): CurrencyIso4217UpperCase {
-  return CurrencyIso4217UpperCase.PLN
+  return CurrencyIso4217UpperCase.PLN;
 }

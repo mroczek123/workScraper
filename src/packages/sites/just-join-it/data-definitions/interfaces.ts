@@ -4,7 +4,7 @@ import {
   MarkerIconChoices,
   ExperienceLevelChoices,
   EmploymentTypeChoices,
-  CityChoices
+  CityChoices,
 } from "./enums";
 
 export interface JustJoinItJobOfferSimple {
