@@ -1,30 +1,4 @@
-export interface NoFluffJobsListResponse {
-  postings: Array<NoFluffJobsJobOfferSimple>;
-  totalCount: number;
-}
-
-export interface NoFluffJobsJobOfferSimple {
-  id: string;
-  name: string;
-  location: Location;
-  posted: number;
-  title: string;
-  technology?: string;
-  logo: string;
-  category: CategoryChoices;
-  seniority: Array<SeniorityChoices>;
-  url: string;
-  regions: Array<RegionsChoices>;
-  salary: Salary;
-  flavors: Array<FlavorsChoices>;
-  onlineInterviewAvailable: boolean;
-  renewed?: number;
-  referralBonus?: number;
-  referralBonusCurrency?: ReferralBonusCurrencyChoices;
-  applied?: string;
-}
-
-enum CountryCodeChoices {
+export enum CountryCodeChoices {
   POL = "POL",
   GBR = "GBR",
   FRA = "FRA",
@@ -36,7 +10,7 @@ enum CountryCodeChoices {
   SVK = "SVK",
 }
 
-enum NameChoices {
+export enum NameChoices {
   POLAND = "Poland",
   UNITED_KINGDOM = "United Kingdom",
   FRANCE = "France",
@@ -48,31 +22,7 @@ enum NameChoices {
   SLOVAKIA = "Slovakia",
 }
 
-interface Country {
-  code: CountryCodeChoices;
-  name: NameChoices;
-}
-
-interface GeoLocation {
-  latitude: number;
-  longitude: number;
-}
-
-interface Places {
-  country?: Country;
-  city: string;
-  street?: string;
-  postalCode?: string;
-  geoLocation?: GeoLocation;
-  url: string;
-}
-
-interface Location {
-  places: Array<Places>;
-  fullyRemote: boolean;
-}
-
-enum CategoryChoices {
+export enum CategoryChoices {
   FULLSTACK = "fullstack",
   BACKEND = "backend",
   FRONTEND = "frontend",
@@ -98,7 +48,7 @@ enum CategoryChoices {
   HR = "hr",
 }
 
-enum SeniorityChoices {
+export enum SeniorityChoices {
   MID = "Mid",
   SENIOR = "Senior",
   EXPERT = "Expert",
@@ -106,20 +56,20 @@ enum SeniorityChoices {
   TRAINEE = "Trainee",
 }
 
-enum RegionsChoices {
+export enum RegionsChoices {
   PL = "pl",
   HU = "hu",
   CZ = "cz",
 }
 
-enum TypeChoices {
+export enum TypeChoices {
   B2B = "b2b",
   UOD = "uod",
   PERMANENT = "permanent",
   ZLECENIE = "zlecenie",
 }
 
-enum CurrencyChoices {
+export enum CurrencyChoices {
   PLN = "PLN",
   USD = "USD",
   EUR = "EUR",
@@ -127,19 +77,12 @@ enum CurrencyChoices {
   CZK = "CZK",
 }
 
-interface Salary {
-  from: number;
-  to: number;
-  type: TypeChoices;
-  currency: CurrencyChoices;
-}
-
-enum FlavorsChoices {
+export enum FlavorsChoices {
   IT = "it",
   BUSINESS = "business",
 }
 
-enum ReferralBonusCurrencyChoices {
+export enum ReferralBonusCurrencyChoices {
   PLN = "PLN",
   EUR = "EUR",
   USD = "USD",

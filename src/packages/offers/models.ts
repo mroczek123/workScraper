@@ -1,58 +1,61 @@
-import { html, GeoPosition, url } from "@src/packages/common/types";
+import { GeoPosition } from "@src/packages/common/types";
 import { Currency } from "@src/packages/currencies/models";
+import { CountryCodeIso3166Alpha2 } from "../localization/country-codes";
 
 export interface JobOfferSimple {
   id: string | number;
   url: string;
   title: string;
   salaries: Array<Salary>;
-  company: Company
+  company: Company;
+  publishedAt: Date;
+  remote: boolean;
+  remoteInterview: boolean;
+  mainTechnology: string | null;
+  locations: Array<Location>;
+  seniority: Array<Seniority>;
 }
 
 export interface JobOfferDetailed extends JobOfferSimple {
-  description: html;
+  description: string; // HTML
   skills: Array<Skill>;
-  locations: Array<Location>;
-  seniority: Array<Seniority>;
-  publishedAt: Date;
-  companyName: string;
-  remote: boolean;
-  remoteInterview: boolean;
 }
 
 export interface Company {
-  logo: url | null;
+  logoUrl: string | null;
   name: string;
 }
 
-export enum EmploymentType {
-  B2B = "b2b",
-  PERMANENT = "permanent",
-  MANDATE_CONTRACT = "mandate_contract",
-}
-
 export interface Salary {
-  from: number;
-  to: number;
-  currency?: Currency;
+  from: number | null;
+  to: number | null;
+  currency: Currency;
   employmentType: EmploymentType;
 }
 
 export interface Location {
   city: string;
-  street: string;
-  coordinates: GeoPosition;
-  countryCode: string;
+  street: string | null;
+  coordinates: GeoPosition | null;
+  countryCode: CountryCodeIso3166Alpha2;
+}
+
+export interface Skill {
+  name: string;
+  level: Seniority
 }
 
 export enum Seniority {
+  TRAINEE = "trainee",
   JUNIOR = "junior",
   MID = "mid",
   SENIOR = "senior",
   EXPERT = "expert"
 }
 
-export interface Skill {
-  name: string;
-  level: Seniority
+export enum EmploymentType {
+  B2B = "b2b",
+  PERMANENT = "permanent",
+  MANDATE_CONTRACT = "mandate_contract",
+  UOD = "uod"
 }

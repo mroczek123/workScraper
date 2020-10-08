@@ -1,3 +1,5 @@
+import { CountryCodeChoices, MarkerIconChoices, ExperienceLevelChoices, SalaryCurrencyChoices, EmploymentTypeChoices } from "./enums";
+
 export interface JustJoinItJobOfferSimple {
   title: string;
   street: string | null;

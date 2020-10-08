@@ -1,7 +1,7 @@
 import { url } from "@src/packages/common/types";
 import { Salary, Skill, JobOfferDetailed, Location } from "@src/packages/offers/models";
 import { JobOfferDetailResponse } from "./data-definitions";
-import { currencyToNormalizedCurrencyMap, employmentTypeToNormalizedEmploymentTypeMap, experienceLevelToNormalizedSeniorityMap, skillLevelToNormalizedSeniorityMap } from "./normalizer-mappings";
+import { currencyToNormalizedCurrencyMap, employmentTypeToNormalizedEmploymentTypeMap, experienceLevelToNormalizedSeniorityMap, skillLevelToNormalizedSeniorityMap } from "../../../packages/sites/just-join-it/normalizer-mappings";
 
 
 export default function normalize(data: JobOfferDetailResponse, url: url): JobOfferDetailed {
