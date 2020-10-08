@@ -1,8 +1,9 @@
-import { Currency } from "@src/packages/currencies/models";
+import { convertToCurrencyIso4217UpperCase } from "@src/packages/localization/converters";
+import { CountryCodeIso3166Alpha2 } from "@src/packages/localization/country-codes";
+import { CurrencyIso4217UpperCase } from "@src/packages/localization/currencies";
 import { JobOfferSimple, Location, Salary } from "@src/packages/offers/models";
 import { JustJoinItJobOfferSimple } from "./data-definitions/interfaces";
 import {
-  currencyToNormalizedCurrencyMap,
   employmentTypeToNormalizedEmploymentTypeMap,
   experienceLevelToNormalizedSeniorityMap,
 } from "./normalizer-mappings";
@@ -34,8 +35,8 @@ export default function normalize(input: JustJoinItJobOfferSimple, url: string):
       from: input.salary_from,
       to: input.salary_to,
       currency: input.salary_currency
-        ? currencyToNormalizedCurrencyMap[input.salary_currency]
-        : Currency.PLN,
+        ? convertToCurrencyIso4217UpperCase(input.salary_currency)
+        : CurrencyIso4217UpperCase.PLN,
       employmentType: employmentTypeToNormalizedEmploymentTypeMap[input.employment_type],
     };
     output.push(salary);
@@ -50,7 +51,7 @@ export default function normalize(input: JustJoinItJobOfferSimple, url: string):
         latitude: Number.parseFloat(input.latitude),
         longitude: Number.parseFloat(input.longitude),
       },
-      countryCode: input.country_code ? input.country_code : "PL",
+      countryCode: input.country_code ? input.country_code : CountryCodeIso3166Alpha2.Poland,
     };
     return [location];
   }

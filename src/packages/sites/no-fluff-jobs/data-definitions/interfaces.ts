@@ -1,12 +1,12 @@
+import { CountryCodeIso3166Alpha3 } from "@src/packages/localization/country-codes";
+import { CurrencyIso4217UpperCase } from "@src/packages/localization/currencies";
 import {
   SeniorityChoices,
   RegionsChoices,
   FlavorsChoices,
-  ReferralBonusCurrencyChoices,
-  NameChoices,
+  CountryNameCapitalCase,
   TypeChoices,
-  CurrencyChoices,
-  CountryCodeChoices,
+  CategoryChoices
 } from "./enums";
 
 export interface NoFluffJobsListResponse {
@@ -31,13 +31,13 @@ export interface NoFluffJobsJobOfferSimple {
   onlineInterviewAvailable: boolean;
   renewed?: number;
   referralBonus?: number;
-  referralBonusCurrency?: ReferralBonusCurrencyChoices;
+  referralBonusCurrency?: CurrencyIso4217UpperCase;
   applied?: string;
 }
 
 interface Country {
-  code: CountryCodeChoices;
-  name: NameChoices;
+  code: CountryCodeIso3166Alpha3;
+  name: CountryNameCapitalCase;
 }
 
 interface GeoLocation {
@@ -63,5 +63,5 @@ interface Salary {
   from: number;
   to: number;
   type: TypeChoices;
-  currency: CurrencyChoices;
+  currency: CurrencyIso4217UpperCase;
 }

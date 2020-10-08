@@ -1,5 +1,5 @@
 import { GeoPosition } from "@src/packages/common/types";
-import { Currency } from "@src/packages/currencies/models";
+import { CurrencyIso4217UpperCase } from "@src/packages/localization/currencies";
 import { CountryCodeIso3166Alpha2 } from "../localization/country-codes";
 
 export interface JobOfferSimple {
@@ -29,7 +29,7 @@ export interface Company {
 export interface Salary {
   from: number | null;
   to: number | null;
-  currency: Currency;
+  currency: CurrencyIso4217UpperCase;
   employmentType: EmploymentType;
 }
 

@@ -1,4 +1,5 @@
-import { Currency } from "@src/packages/localization/currencies";
+import { convertToCountryCodeIso3166Alpha2 } from "@src/packages/localization/converters";
+import { CurrencyIso4217UpperCase } from "@src/packages/localization/currencies";
 import {
   EmploymentType,
   JobOfferSimple,
@@ -6,10 +7,12 @@ import {
   Salary,
   Seniority,
 } from "@src/packages/offers/models";
+import { RemoteTypeChoices } from "./data-definitions/enums";
+import { JobsForGeekJobOfferSimple } from "./data-definitions/interfaces";
 
 export default function normalizer(
   input: JobsForGeekJobOfferSimple,
-  urlstring: url,
+  urlstring: string,
 ): JobOfferSimple {
   return {
     id: input.id,
@@ -36,7 +39,7 @@ export default function normalizer(
     const location: Location = {
       city: input.city,
       street: null,
-      countryCode: input.country, // TODO: MAP TO COUNTRYCODE
+      countryCode: convertToCountryCodeIso3166Alpha2(input.country),
       coordinates: null,
     };
     if (input.lat && input.lng) {
@@ -57,7 +60,7 @@ export default function normalizer(
     const salary: Salary = {
       from: input.b2bSalaryFrom ? input.b2bSalaryFrom : null,
       to: input.b2bSalaryTo ? input.b2bSalaryTo : null,
-      currency: Currency.PLN,
+      currency: CurrencyIso4217UpperCase.PLN,
       employmentType: EmploymentType.B2B,
     };
     output.push(salary);

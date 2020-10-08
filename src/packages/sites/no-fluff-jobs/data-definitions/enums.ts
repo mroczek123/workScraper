@@ -1,16 +1,4 @@
-export enum CountryCodeChoices {
-  POL = "POL",
-  GBR = "GBR",
-  FRA = "FRA",
-  CAN = "CAN",
-  AUT = "AUT",
-  DEU = "DEU",
-  HUN = "HUN",
-  CZE = "CZE",
-  SVK = "SVK",
-}
-
-export enum NameChoices {
+export enum CountryNameCapitalCase {
   POLAND = "Poland",
   UNITED_KINGDOM = "United Kingdom",
   FRANCE = "France",
@@ -69,22 +57,7 @@ export enum TypeChoices {
   ZLECENIE = "zlecenie",
 }
 
-export enum CurrencyChoices {
-  PLN = "PLN",
-  USD = "USD",
-  EUR = "EUR",
-  HUF = "HUF",
-  CZK = "CZK",
-}
-
 export enum FlavorsChoices {
   IT = "it",
   BUSINESS = "business",
-}
-
-export enum ReferralBonusCurrencyChoices {
-  PLN = "PLN",
-  EUR = "EUR",
-  USD = "USD",
-  HUF = "HUF",
 }

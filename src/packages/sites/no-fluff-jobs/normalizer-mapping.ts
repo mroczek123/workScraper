@@ -1,14 +1,5 @@
-import { Currency } from "@src/packages/currencies/models";
 import { EmploymentType, Seniority } from "@src/packages/offers/models";
-import { CurrencyChoices, SeniorityChoices, TypeChoices } from "./data-definitions/enums";
-
-export const currencyToNormalizedCurrencyMap = {
-  [CurrencyChoices.PLN]: Currency.PLN,
-  [CurrencyChoices.USD]: Currency.USD,
-  [CurrencyChoices.EUR]: Currency.EUR,
-  [CurrencyChoices.HUF]: Currency.HUF,
-  [CurrencyChoices.CZK]: Currency.CZK,
-};
+import { SeniorityChoices, TypeChoices } from "./data-definitions/enums";
 
 export const contractTypeToNormalizedEmploymentTypeMap = {
   [TypeChoices.B2B]: EmploymentType.B2B,

@@ -1,11 +1,14 @@
-interface JobsForGeekJobOfferSimple {
+import { CountryNamesUpperCase } from "@src/packages/localization/country-codes";
+import { B2bFrequencyChoices, CategoryChoices, CityChoices, EmploymentFrequencyChoices, RemoteTypeChoices } from "./enums";
+
+export interface JobsForGeekJobOfferSimple {
   id: number;
   featured: boolean;
   logoId?: number;
   jobTitle: string;
   companyName: string;
   city?: CityChoices;
-  country: CountryChoices;
+  country: CountryNamesUpperCase;
   websiteAddress: string;
   skills?: Array<string>;
   b2bSalaryFrom?: number;

@@ -245,3 +245,24 @@ export enum CountryCodeIso3166Alpha2 {
   Zambia = "ZM",
   Zimbabwe = "ZW",
 }
+
+export enum CountryCodeIso3166Alpha3 { // TODO !!
+  Poland = "POL",
+  GreatBritain = "GBR",
+  France = "FRA",
+  Canada = "CAN",
+  Austria = "AUT",
+  Deutschland = "DEU",
+  Hungary = "HUN",
+  Czech = "CZE",
+  Slovakia = "SVK",
+}
+
+export enum CountryNamesUpperCase { // TODO !!
+  POLAND = "POLAND",
+  UKRAINE = "UKRAINE",
+  RUSSIA = "RUSSIA",
+  BELARUS = "BELARUS",
+  UNITED_STATES = "UNITED_STATES",
+  GERMANY = "GERMANY",
+}

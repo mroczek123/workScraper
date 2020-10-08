@@ -1,4 +1,4 @@
-enum CityChoices {
+export enum CityChoices {
   WARSAW = "WARSAW",
   ZAPORIZHIA = "ZAPORIZHIA",
   WROCLAW = "WROCLAW",
@@ -51,20 +51,13 @@ enum CityChoices {
   KRYVYI_RIH = "KRYVYI_RIH",
   NEW_YORK = "NEW_YORK",
 }
-enum CountryChoices {
-  POLAND = "POLAND",
-  UKRAINE = "UKRAINE",
-  RUSSIA = "RUSSIA",
-  BELARUS = "BELARUS",
-  UNITED_STATES = "UNITED_STATES",
-  GERMANY = "GERMANY",
-}
-enum RemoteTypeChoices {
+
+export enum RemoteTypeChoices {
   FULL_REMOTE_WORK = "FULL_REMOTE_WORK",
   PARTIAL_REMOTE_WORK = "PARTIAL_REMOTE_WORK",
   NO_REMOTE_WORK = "NO_REMOTE_WORK",
 }
-enum CategoryChoices {
+export enum CategoryChoices {
   MOBILEDEVELOPER = "MOBILEDEVELOPER",
   FRONTEND = "FRONTEND",
   OTHER = "OTHER",
@@ -86,11 +79,11 @@ enum CategoryChoices {
   UXUIDESIGNER = "UXUIDESIGNER",
   TRAINER = "TRAINER",
 }
-enum B2bFrequencyChoices {
+export enum B2bFrequencyChoices {
   HOUR = "HOUR",
   MONTH = "MONTH",
 }
-enum EmploymentFrequencyChoices {
+export enum EmploymentFrequencyChoices {
   MONTH = "MONTH",
   HOUR = "HOUR",
   YEAR = "YEAR",

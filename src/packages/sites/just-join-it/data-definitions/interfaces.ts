@@ -1,16 +1,17 @@
+import { CountryCodeIso3166Alpha2 } from "@src/packages/localization/country-codes";
+import { CurrencyIso4217LowerCase } from "@src/packages/localization/currencies";
 import {
-  CountryCodeChoices,
   MarkerIconChoices,
   ExperienceLevelChoices,
-  SalaryCurrencyChoices,
   EmploymentTypeChoices,
+  CityChoices
 } from "./enums";
 
 export interface JustJoinItJobOfferSimple {
   title: string;
   street: string | null;
   city: CityChoices;
-  country_code: CountryCodeChoices | null;
+  country_code: CountryCodeIso3166Alpha2 | null;
   address_text: string;
   marker_icon: MarkerIconChoices;
   remote: boolean;
@@ -20,7 +21,7 @@ export interface JustJoinItJobOfferSimple {
   experience_level: ExperienceLevelChoices;
   salary_from: number | null;
   salary_to: number | null;
-  salary_currency: SalaryCurrencyChoices | null;
+  salary_currency: CurrencyIso4217LowerCase | null;
   latitude: string;
   longitude: string;
   employment_type: EmploymentTypeChoices;

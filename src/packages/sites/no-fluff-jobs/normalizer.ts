@@ -1,8 +1,9 @@
+import { convertToCountryCodeIso3166Alpha2, convertToCurrencyIso4217UpperCase } from "@src/packages/localization/converters";
+import { CountryCodeIso3166Alpha2 } from "@src/packages/localization/country-codes";
 import { JobOfferSimple, Location, Salary } from "@src/packages/offers/models";
 import { NoFluffJobsJobOfferSimple } from "./data-definitions/interfaces";
 import {
   contractTypeToNormalizedEmploymentTypeMap,
-  currencyToNormalizedCurrencyMap,
   seniorityToNormalizedSeniorityMap,
 } from "./normalizer-mapping";
 
@@ -32,7 +33,7 @@ export default function normalizer(
     const salary: Salary = {
       from: input.salary.from,
       to: input.salary.to,
-      currency: currencyToNormalizedCurrencyMap[input.salary.currency],
+      currency: convertToCurrencyIso4217UpperCase(input.salary.currency),
       employmentType: contractTypeToNormalizedEmploymentTypeMap[input.salary.type],
     };
     output.push(salary);
@@ -43,9 +44,11 @@ export default function normalizer(
     return input.location.places.map((location) => {
       const loc: Location = {
         city: location.city,
-        countryCode: (location.country ? location.country : "PL") as string, // TODO: zmapować TODO: remove AS
+        countryCode: location.country
+          ? convertToCountryCodeIso3166Alpha2(location.country.code)
+          : CountryCodeIso3166Alpha2.Poland,
         street: location.street ? location.street : null,
-        coordinates: { latitude: 0, longitude: 0 }, // TODO: rozkmina na podstawie miasta i ulicy
+        coordinates: null,
       };
       return loc;
     });
