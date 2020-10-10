@@ -6,13 +6,13 @@
     "strict": true,
     "moduleResolution": "node",
     "jsx": "react",
-    "target": "ES2020",
+    "target": "ES2019", // TODO INVESTIGATE: INSTEAD OF ES2020 bc of problems with optional chaining, 
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "lib": ["DOM"],
+    "lib": ["DOM", "ES2020"], // TODO: DOM for some forgotten reason TO REMOVE LATER
     "paths": {
       "@src/*": ["src/*"]
     }
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }
