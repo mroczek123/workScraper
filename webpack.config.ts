@@ -5,17 +5,16 @@ import * as copyWebpackPlugin from "copy-webpack-plugin";
 
 const config: webpack.Configuration = {
   entry: {
-    apiServer: "./src/api-server/src/main.ts",
-    scraper: "./src/scraper/main.ts",
-    frontend: ["./src/frontend/src/index.tsx", "./src/frontend/main.ts"],
-    //frontendServer: {import: "./src/frontend/main.ts", filename: "frontend/main.js"},
+    "api-server/index": "./src/api-server/src/main.ts",
+    "scraper/index": "./src/scraper/main.ts",
+    "frontend/server": "./src/frontend/main.ts",
+    "frontend/app": "./src/frontend/src/main.tsx",
   },
   mode: "development",
   target: "node",
   externals: [nodeExternals()], // for compability with nest.js
   devtool: "inline-source-map",
   output: {
-    filename: "[name]/main.js",
     path: path.resolve(__dirname, "dist"),
   },
   resolve: {
