@@ -1,14 +1,14 @@
-import JustJoinItScraper from "@src/scraper/sites/just-join-it/scraper";
-import { merge, Observable, Subscription } from "rxjs";
-import Collector from "./collector";
+import { Observable, Subscription } from "rxjs";
 
 function main(): Observable<void> {
   return new Observable((subscriber) => {
-    const scrapersObservable = merge(new JustJoinItScraper().scrap());
-    scrapersObservable.subscribe({
-      next: (jobOffers) => Collector.collect(jobOffers),
-      complete: () => subscriber.complete(),
-    });
+    // TODO: insert scrapers here like below
+    // const scrapersObservable = merge(new JustJoinItScraper().scrap());
+    // scrapersObservable.subscribe({
+    //   next: (jobOffers) => Collector.collect(jobOffers),
+    //   complete: () => subscriber.complete(),
+    // });
+    subscriber.complete();
   });
 }
 
