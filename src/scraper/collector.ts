@@ -1,7 +1,8 @@
 import { Collection, Db, MongoClient } from "mongodb";
 import { JobOfferDetailed } from "@src/packages/offers/models";
-import settings from "@src/settings";
 
+// MOCK
+const settings = { database: { uri: "", dbName: "" } };
 export default class Collector {
   public static collect(jobOffers: Array<JobOfferDetailed>): void {
     connectToDb().then((databaseConnection) => {
