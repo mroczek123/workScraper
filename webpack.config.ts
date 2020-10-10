@@ -1,12 +1,14 @@
-const path = require("path");
-const webpack = require("webpack");
-const nodeExternals = require("webpack-node-externals");
+import * as path from "path";
+import * as webpack from "webpack";
+import * as nodeExternals from "webpack-node-externals";
+import * as copyWebpackPlugin from "copy-webpack-plugin";
 
-module.exports = {
+const config: webpack.Configuration = {
   entry: {
     apiServer: "./src/api-server/src/main.ts",
     scraper: "./src/scraper/main.ts",
-    frontend: "./src/frontend/main.ts",
+    frontend: ["./src/frontend/src/index.tsx", "./src/frontend/main.ts"],
+    //frontendServer: {import: "./src/frontend/main.ts", filename: "frontend/main.js"},
   },
   mode: "development",
   target: "node",
@@ -26,15 +28,20 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         use: "ts-loader",
       },
     ],
   },
   plugins: [
-    // for compability with nest.js
+    new copyWebpackPlugin({
+      patterns: [
+        {from:'./src/frontend/src/index.html', to: './frontend/index.html'}
+      ]
+    }),
+    // for compability with nest.js and his dynamic imports
     new webpack.IgnorePlugin({
-      checkResource(resource) {
+      checkResource(resource: string) {
         const lazyImports = [
           "@nestjs/microservices",
           "@nestjs/microservices/microservices-module",
@@ -59,3 +66,5 @@ module.exports = {
     }),
   ],
 };
+
+export default config;
