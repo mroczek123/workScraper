@@ -6,7 +6,7 @@
     "strict": true,
     "moduleResolution": "node",
     "jsx": "react",
-    "target": "ES2019", // TODO INVESTIGATE: INSTEAD OF ES2020 bc of problems with optional chaining, 
+    "target": "ES2019", // TODO INVESTIGATE: INSTEAD OF ES2020 bc of problems with optional chaining,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "lib": ["DOM", "ES2020"], // TODO: DOM for some forgotten reason TO REMOVE LATER

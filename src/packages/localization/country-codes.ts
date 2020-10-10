@@ -258,7 +258,9 @@ export enum CountryCodeIso3166Alpha3 { // TODO !!
   Slovakia = "SVK",
 }
 
-export const CountryCodesIso3166Alpha2AndAlpha3: {[countryName: string]: {alpha2: string, alpha3: string}} = {
+export const CountryCodesIso3166Alpha2AndAlpha3: {
+  [countryName: string]: { alpha2: string; alpha3: string };
+} = {
   Afghanistan: { alpha2: "AF", alpha3: "AFG" },
   "Åland Islands": { alpha2: "AX", alpha3: "ALA" },
   Albania: { alpha2: "AL", alpha3: "ALB" },

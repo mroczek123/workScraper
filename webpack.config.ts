@@ -35,9 +35,7 @@ const config: webpack.Configuration = {
   },
   plugins: [
     new copyWebpackPlugin({
-      patterns: [
-        {from:'./src/frontend/src/index.html', to: './frontend/index.html'}
-      ]
+      patterns: [{ from: "./src/frontend/src/index.html", to: "./frontend/index.html" }],
     }),
     // for compability with nest.js and his dynamic imports
     new webpack.IgnorePlugin({
