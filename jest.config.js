@@ -1,0 +1,11 @@
+const path = require("path");
+
+module.exports = {
+  transform: {
+    "^.+\\.(ts|tsx)$": "ts-jest",
+  },
+  moduleNameMapper: {
+    "@src/(.*)": path.resolve(__dirname, "src", "$1"),
+  },
+  testPathIgnorePatterns: ["./node_modules/(.*)", "./dist/(.*)"],
+};

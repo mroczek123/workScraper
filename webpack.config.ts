@@ -11,7 +11,7 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
     alias: {
-      // KEEP IN SYNC WITH tsconfig.json.compilerOptions.paths !
+      // KEEP IN SYNC WITH tsconfig.json.compilerOptions.paths ! and jest.config.moduleNameMapper
       "@src": path.resolve(__dirname, "src"),
     },
   },

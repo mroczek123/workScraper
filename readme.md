@@ -6,6 +6,7 @@ System currently consists from few main building blocks:
 - backend module (dir: ./src/api-server) which shares REST API to fetch normalized job offers from supported sites
 - frontend module (dir: ./src/frontend) which provides SPA app to interact with backend
 - scraping module (dir: ./src/scraper) which regularly snapshots job offers to analytical purposes
+- packages folder: includes things shared between modules e.g. interface definitions
 
 ## Current features:
 
@@ -57,3 +58,15 @@ Decision to make project fully JS was taken due to some advantages which using o
 ### 2. Add analytics feature to make easier for programmers see global/local trends.
 
 ### 3. Well ... tests would be helpful in future :P
+
+
+## Contribution
+### How to build project
+
+1. `npm install -g webpack-cli gulp`
+2. `npm install`
+3. `gulp build`
+4. Go to dist and choose package to run
+5. Create .env file with settings
+6. `nodenv <nazwa pliku js>`
+7. Enjoy

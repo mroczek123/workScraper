@@ -1,5 +1,6 @@
 import { execSync } from "child_process";
 import * as path from "path";
+import * as fs from "fs";
 
 const WEBPACK_CONFIGS = [
   path.join(__dirname, "src", "api-server"),
@@ -10,6 +11,7 @@ const WEBPACK_CONFIGS = [
 
 function build() {
   return new Promise((resolve) => {
+    fs.rmdirSync(path.join(__dirname, "dist"), { recursive: true });
     WEBPACK_CONFIGS.forEach((path) => {
       console.log(path);
       try {

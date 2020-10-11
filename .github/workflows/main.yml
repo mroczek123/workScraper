@@ -1,0 +1,28 @@
+name: Main
+
+on: [push, pull_request]
+
+defaults:
+  runs_on: ubuntu-latest
+  uses: docker://node:14
+jobs:
+  build:
+    steps:
+      npmDependencies:
+        run: "npm install"
+      installGulp:
+        run: "npm install gulp"
+      gulpBuild:
+        run: "gulp build"
+  test:
+    needs: build
+    steps:
+      jestInstall:
+        run: "npm install jest"
+      runTests:
+        run: "jest"
+
+  deploy:
+    needs: test
+    uses: docker://docker:19
+    steps:

@@ -2,6 +2,7 @@ import { Configuration, IgnorePlugin } from "webpack";
 import * as nodeExternals from "webpack-node-externals";
 import ParentConfig from "../../webpack.config";
 import * as _ from "lodash";
+import * as copyWebpackPlugin from "copy-webpack-plugin";
 
 const config: Configuration = {
   entry: {
@@ -9,6 +10,9 @@ const config: Configuration = {
   },
   externals: [nodeExternals()],
   plugins: [
+    new copyWebpackPlugin({
+      patterns: [{ from: "./Dockerfile", to: "./api-server/Dockerfile", toType: "file" }],
+    }),
     new IgnorePlugin({
       checkResource(resource: string) {
         const lazyImports = [

@@ -11,7 +11,7 @@
     "emitDecoratorMetadata": true,
     "lib": ["DOM", "ES2020"], // TODO: DOM for some forgotten reason TO REMOVE LATER
     "paths": {
-      "@src/*": ["src/*"],
+      "@src/*": ["src/*"]
     }
   },
   "exclude": ["node_modules", "dist"]
