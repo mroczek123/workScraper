@@ -7,16 +7,17 @@ jobs:
   linter:
     runs-on: ubuntu-latest
     steps:
-      - name: prepare
+      - name: "Prepare Node"
         uses: docker://node:14
+      - name: "Checkout data"
         uses: actions/checkout@v2
       - name: "Install dependencies"
         run: 'npm install'
-      - name: linter
+      - name: "Linter"
         run: 'node ./node_modules/eslint/bin/eslint.js .'
-      - name: build
+      - name: "Build"
         run: "gulp build"
-      - name: test
+      - name: "Test"
         run: 'node ./node_modules/jest/bin/jest.js'
 
       
