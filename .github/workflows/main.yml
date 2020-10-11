@@ -21,8 +21,3 @@ jobs:
         run: "npm install jest"
       runTests:
         run: "jest"
-
-  deploy:
-    needs: test
-    uses: docker://docker:19
-    steps:

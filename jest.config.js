@@ -8,4 +8,12 @@ module.exports = {
     "@src/(.*)": path.resolve(__dirname, "src", "$1"),
   },
   testPathIgnorePatterns: ["./node_modules/(.*)", "./dist/(.*)"],
+  globals: {
+    "ts-jest": {
+      // ...
+      diagnostics: {
+        ignoreCodes: [151001],
+      },
+    },
+  },
 };

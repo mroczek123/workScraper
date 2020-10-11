@@ -1,5 +1,5 @@
 import Axios, { AxiosResponse } from "axios";
-import { JobOfferSimple } from "../../offers/models";
+import { JobOfferDetailed, JobOfferSimple } from "../../offers/models";
 import normalize from "./normalizer";
 import { Site } from "../models";
 import { JobsForGeekJobOfferSimple } from "./data-definitions/interfaces";
@@ -12,5 +12,12 @@ export default class JobsForGeekSite extends Site {
     return response.data.map((jobOffer) =>
       normalize(jobOffer, `https://jobsforgeek.com/job-offers/details/${jobOffer.id}`),
     );
+  }
+  // TODO
+  getOfferDetails(ids: Array<string | number>): Promise<Array<JobOfferDetailed>> {
+    return new Promise((resolve, reject) => {
+      const output: Array<JobOfferDetailed> = [];
+      resolve(output);
+    });
   }
 }
