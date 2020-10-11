@@ -8,14 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: prepare
-      - uses: docker://node:14
-      - uses: actions/checkout@v2
-      - run: 'npm install'
+        uses: docker://node:14
+        uses: actions/checkout@v2
+        run: 'npm install'
       - name: linter
-      - run: 'node ./node_modules/eslint/bin/eslint.js .'
+        run: 'node ./node_modules/eslint/bin/eslint.js .'
       - name: build
-      - run: "gulp build"
+        run: "gulp build"
       - name: test
-      - run: 'node ./node_modules/jest/bin/jest.js'
+        run: 'node ./node_modules/jest/bin/jest.js'
 
       
