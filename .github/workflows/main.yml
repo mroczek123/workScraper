@@ -7,7 +7,7 @@ defaults:
 jobs:
   build:
     steps:
-      uses: docker://node:14
+      - uses: docker://node:14
       - run: "npm install"
       - run: "npm install gulp"
       - run: "gulp build"
