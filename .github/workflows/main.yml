@@ -3,7 +3,7 @@ name: Main
 on: [push, pull_request]
 
 defaults:
-  runs_on: ubuntu-latest
+  runs-on: ubuntu-latest
 jobs:
   build:
     steps:
