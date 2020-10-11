@@ -4,10 +4,10 @@ on: [push, pull_request]
 
 defaults:
   runs_on: ubuntu-latest
-  uses: docker://node:14
 jobs:
   build:
     steps:
+      uses: docker://node:14
       - run: "npm install"
       - run: "npm install gulp"
       - run: "gulp build"
