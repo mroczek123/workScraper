@@ -8,16 +8,11 @@ defaults:
 jobs:
   build:
     steps:
-      npmDependencies:
-        run: "npm install"
-      installGulp:
-        run: "npm install gulp"
-      gulpBuild:
-        run: "gulp build"
+      - run: "npm install"
+      - run: "npm install gulp"
+      - run: "gulp build"
   test:
     needs: build
     steps:
-      jestInstall:
-        run: "npm install jest"
-      runTests:
-        run: "jest"
+      - run: "npm install jest"
+      - run: "jest"
