@@ -9,7 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: docker://node:14
-      - run: "pwd"
       - run: "npm install"
       - run: "npm install gulp"
       - run: "gulp build"
@@ -17,5 +16,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - run: "npm install jest"
+      - run: "npm install -g jest"
       - run: "jest"
