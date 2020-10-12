@@ -2,7 +2,6 @@ import { convertToCountryCodeIso3166Alpha2 } from "@src/packages/localization/co
 import { CurrencyIso4217UpperCase } from "@src/packages/localization/currencies";
 import {
   EmploymentType,
-  JobOfferDetailed,
   JobOfferSimple,
   Location,
   Salary,
@@ -77,8 +76,4 @@ export function normalize(input: JobsForGeekJobOfferSimple, urlstring: string): 
     }
     return [Seniority.EXPERT];
   }
-}
-
-export function normalizeDetailed(input: TODO): JobOfferDetailed {
-
 }

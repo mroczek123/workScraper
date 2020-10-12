@@ -14,12 +14,14 @@ describe("server", () => {
     while (!isResponding) {
       await Axios.get(SERVER_URL)
         .then(() => (isResponding = true))
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
         .catch(() => {});
     }
   });
   afterAll(() => {
     try {
       rmdirSync(path.join(ROOT_PATH, "dist"));
+      // eslint-disable-next-line no-empty
     } catch (e) {}
   });
 

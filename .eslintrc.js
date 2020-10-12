@@ -18,4 +18,12 @@ module.exports = {
   env: {
     node: true,
   },
+  overrides: [
+    {
+      files: ["*.js"],
+      rules: {
+        "@typescript-eslint/no-var-requires": "off",
+      },
+    },
+  ],
 };

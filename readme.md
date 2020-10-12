@@ -59,8 +59,8 @@ Decision to make project fully JS was taken due to some advantages which using o
 
 ### 3. Well ... tests would be helpful in future :P
 
-
 ## Contribution
+
 ### How to build project
 
 1. `npm install -g webpack-cli gulp`
