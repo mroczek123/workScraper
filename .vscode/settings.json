@@ -1,5 +1,8 @@
 {
   "javascript.validate.enable": true,
   "editor.tabSize": 2,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "jest.autoEnable": false,
+  "jest.onDemand": true,
+  "jest.enableInlineErrorMessages": true
 }

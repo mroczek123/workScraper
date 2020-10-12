@@ -13,10 +13,7 @@ function build() {
   return new Promise((resolve) => {
     fs.rmdirSync(path.join(__dirname, "dist"), { recursive: true });
     WEBPACK_CONFIGS.forEach((path) => {
-      console.log(path);
-      try {
-        execSync("npx webpack", { cwd: path, stdio: "inherit" });
-      } catch (e) {}
+      execSync("npx webpack", { cwd: path, stdio: "inherit" });
     });
     resolve();
   });

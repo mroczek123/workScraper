@@ -1,7 +1,7 @@
 import { Collection, Db, MongoClient } from "mongodb";
 import { JobOfferDetailed } from "@src/packages/offers/models";
 
-// MOCK
+// TODO MOCK
 const settings = { database: { uri: "", dbName: "" } };
 export default class Collector {
   public static collect(jobOffers: Array<JobOfferDetailed>): void {
@@ -14,20 +14,18 @@ export default class Collector {
       });
     });
 
-    function connectToDb(): Promise<Db> {
-      return new Promise(async (resolve, reject) => {
-        const mongoClient = new MongoClient(settings.database.uri, { useUnifiedTopology: true });
-        await mongoClient.connect();
-        const db = mongoClient.db(settings.database.dbName);
-        resolve(db);
-      });
+    async function connectToDb(): Promise<Db> {
+      const mongoClient = new MongoClient(settings.database.uri, { useUnifiedTopology: true });
+      await mongoClient.connect();
+      const db = mongoClient.db(settings.database.dbName);
+      return db;
     }
 
     function splitJobOffers(
       jobOffers: Array<JobOfferDetailed>,
       dbCollection: Collection<JobOfferDetailed>,
     ): Promise<{ inDb: Array<JobOfferDetailed>; notInDb: Array<JobOfferDetailed> }> {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         const output: { inDb: Array<JobOfferDetailed>; notInDb: Array<JobOfferDetailed> } = {
           inDb: [],
           notInDb: [],

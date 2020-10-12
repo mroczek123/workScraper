@@ -2,6 +2,7 @@ import { convertToCountryCodeIso3166Alpha2 } from "@src/packages/localization/co
 import { CurrencyIso4217UpperCase } from "@src/packages/localization/currencies";
 import {
   EmploymentType,
+  JobOfferDetailed,
   JobOfferSimple,
   Location,
   Salary,
@@ -10,10 +11,7 @@ import {
 import { RemoteTypeChoices } from "./data-definitions/enums";
 import { JobsForGeekJobOfferSimple } from "./data-definitions/interfaces";
 
-export default function normalizer(
-  input: JobsForGeekJobOfferSimple,
-  urlstring: string,
-): JobOfferSimple {
+export function normalize(input: JobsForGeekJobOfferSimple, urlstring: string): JobOfferSimple {
   return {
     id: input.id,
     url: urlstring,
@@ -79,4 +77,8 @@ export default function normalizer(
     }
     return [Seniority.EXPERT];
   }
+}
+
+export function normalizeDetailed(input: TODO): JobOfferDetailed {
+
 }

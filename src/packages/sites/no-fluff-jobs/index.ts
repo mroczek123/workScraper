@@ -14,10 +14,8 @@ export default class NoFluffJobsSite extends Site {
     );
   }
   // TODO
-  getOfferDetails(ids: Array<string | number>): Promise<Array<JobOfferDetailed>> {
-    return new Promise((resolve, reject) => {
-      const output: Array<JobOfferDetailed> = [];
-      resolve(output);
-    });
+  async getOfferDetails(id: string | number): Promise<JobOfferDetailed> {
+    const responseData = (await Axios.get(`https://nofluffjobs.com/api/posting/${id}`)).data;
+    return normalize(responseData);
   }
 }
