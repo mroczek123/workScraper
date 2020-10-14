@@ -1,6 +1,7 @@
 const path = require("path");
 
 module.exports = {
+  testEnvironment: "node",
   transform: {
     "^.+\\.(ts|tsx)$": "ts-jest",
   },
@@ -10,7 +11,6 @@ module.exports = {
   testPathIgnorePatterns: ["./node_modules/(.*)", "./dist/(.*)"],
   globals: {
     "ts-jest": {
-      // ...
       diagnostics: {
         ignoreCodes: [151001],
       },

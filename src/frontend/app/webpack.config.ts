@@ -1,16 +1,16 @@
 import { Configuration } from "webpack";
 import * as copyWebpackPlugin from "copy-webpack-plugin";
-import ParentConfig from "../../../webpack.config";
+import ParentConfig from "../../../webpack.common";
 import * as _ from "lodash";
 
 const config: Configuration = {
   entry: {
-    "frontend/app": "./main.tsx",
+    "frontend/public/app": "./main.tsx",
   },
   target: "web",
   plugins: [
     new copyWebpackPlugin({
-      patterns: [{ from: "./index.html", to: "./frontend/index.html" }],
+      patterns: [{ from: "./index.html", to: "./frontend/public/index.html" }],
     }),
   ],
 };

@@ -2,21 +2,24 @@ import { execSync } from "child_process";
 import * as path from "path";
 import * as fs from "fs";
 
-const WEBPACK_CONFIGS = [
+const MODULES_LOCATIONS = [
   path.join(__dirname, "src", "api-server"),
   path.join(__dirname, "src", "frontend", "app"),
   path.join(__dirname, "src", "frontend", "server"),
-  path.join(__dirname, "src", "scraper"),
 ];
 
-function build() {
-  return new Promise((resolve) => {
-    fs.rmdirSync(path.join(__dirname, "dist"), { recursive: true });
-    WEBPACK_CONFIGS.forEach((path) => {
-      execSync("npx webpack", { cwd: path, stdio: "inherit" });
-    });
-    resolve();
+const TESTS_LOCATIONS = MODULES_LOCATIONS.concat([]); // TODO: HOOK FOR NEXT TESTS
+
+export async function build(): Promise<void> {
+  fs.rmdirSync(path.join(__dirname, "dist"), { recursive: true });
+  MODULES_LOCATIONS.forEach((path) => {
+    execSync("npx webpack", { cwd: path, stdio: "inherit" });
   });
 }
 
-exports.build = build;
+export async function test(): Promise<void> {
+  build();
+  TESTS_LOCATIONS.forEach((path) => {
+    execSync("jest", { cwd: path, stdio: "inherit" });
+  });
+}

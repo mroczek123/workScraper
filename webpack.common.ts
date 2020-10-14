@@ -4,6 +4,10 @@ import * as webpack from "webpack";
 const config: webpack.Configuration = {
   mode: "development",
   target: "node",
+  node: {
+    __dirname: false,
+    __filename: false,
+  },
   devtool: "inline-source-map",
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -22,6 +26,9 @@ const config: webpack.Configuration = {
         use: "ts-loader",
       },
     ],
+  },
+  stats: {
+    warningsFilter: ["node_modules/express/lib/view.js"],
   },
 };
 
