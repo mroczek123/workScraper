@@ -1,15 +1,3 @@
-export enum CountryNameCapitalCase {
-  POLAND = "Poland",
-  UNITED_KINGDOM = "United Kingdom",
-  FRANCE = "France",
-  CANADA = "Canada",
-  AUSTRIA = "Austria",
-  GERMANY = "Germany",
-  HUNGARY = "Hungary",
-  CZECH_REPUBLIC = "Czech Republic",
-  SLOVAKIA = "Slovakia",
-}
-
 export enum CategoryChoices {
   FULLSTACK = "fullstack",
   BACKEND = "backend",

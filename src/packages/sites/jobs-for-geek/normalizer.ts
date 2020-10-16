@@ -1,5 +1,6 @@
-import { convertToCountryCodeIso3166Alpha2 } from "@src/packages/localization/converters";
-import { CurrencyIso4217UpperCase } from "@src/packages/localization/currencies";
+import { convertToCountryCodeIso3166Alpha2UpperCase } from "@src/packages/localization/converters";
+import { COUNTRIES } from "@src/packages/localization/models/countries";
+
 import {
   EmploymentType,
   JobOfferSimple,
@@ -8,7 +9,7 @@ import {
   Seniority,
 } from "@src/packages/offers/models";
 import { RemoteTypeChoices } from "./data-definitions/enums";
-import { JobsForGeekJobOfferSimple } from "./data-definitions/interfaces";
+import { JobsForGeekJobOfferSimple } from "./data-definitions/classes";
 
 export function normalize(input: JobsForGeekJobOfferSimple, urlstring: string): JobOfferSimple {
   return {
@@ -36,7 +37,7 @@ export function normalize(input: JobsForGeekJobOfferSimple, urlstring: string): 
     const location: Location = {
       city: input.city,
       street: null,
-      countryCode: convertToCountryCodeIso3166Alpha2(input.country),
+      countryCode: convertToCountryCodeIso3166Alpha2UpperCase(input.country),
       coordinates: null,
     };
     if (input.lat && input.lng) {
@@ -55,10 +56,18 @@ export function normalize(input: JobsForGeekJobOfferSimple, urlstring: string): 
       return output;
     }
     const salary: Salary = {
-      from: input.b2bSalaryFrom ? input.b2bSalaryFrom : null,
-      to: input.b2bSalaryTo ? input.b2bSalaryTo : null,
-      currency: CurrencyIso4217UpperCase.PLN,
-      employmentType: EmploymentType.B2B,
+      from: (input.b2bSalaryFrom ? input.b2bSalaryFrom : input.employmentSalaryFrom) || null,
+      to: (input.b2bSalaryTo ? input.b2bSalaryTo : input.employmentSalaryTo) || null,
+      currency:
+        COUNTRIES.find(
+          (countryIter) =>
+            countryIter.countryName.toUpperCase().split(" ").join("_") == input.country,
+        )?.currencyCode || null,
+      employmentType: input.b2bSalaryFrom
+        ? EmploymentType.B2B
+        : input.employmentSalaryFrom
+        ? EmploymentType.PERMANENT
+        : null,
     };
     output.push(salary);
     return output;

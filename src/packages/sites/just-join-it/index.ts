@@ -1,6 +1,6 @@
 import Axios, { AxiosResponse } from "axios";
 import { JobOfferSimple } from "../../offers/models";
-import { JustJoinItJobOfferSimple } from "./data-definitions/interfaces";
+import { JustJoinItJobOfferSimple } from "./data-definitions/classes";
 import normalize from "./normalizer";
 import { Site } from "../models";
 

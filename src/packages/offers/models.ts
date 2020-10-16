@@ -1,6 +1,6 @@
 import { GeoPosition } from "@src/packages/common/types";
-import { CurrencyIso4217UpperCase } from "@src/packages/localization/currencies";
-import { CountryCodeIso3166Alpha2 } from "../localization/country-codes";
+import { CountryCodeIso3166Alpha2UpperCase } from "../localization/models/countrycodeiso3166alpha2uppercase";
+import { CurrencyIso4217UpperCase } from "../localization/models/currencyiso4217uppercase";
 
 export interface JobOfferSimple {
   id: string | number;
@@ -29,15 +29,15 @@ export interface Company {
 export interface Salary {
   from: number | null;
   to: number | null;
-  currency: CurrencyIso4217UpperCase;
-  employmentType: EmploymentType;
+  currency: CurrencyIso4217UpperCase | null;
+  employmentType: EmploymentType | null;
 }
 
 export interface Location {
   city: string;
   street: string | null;
   coordinates: GeoPosition | null;
-  countryCode: CountryCodeIso3166Alpha2;
+  countryCode: CountryCodeIso3166Alpha2UpperCase;
 }
 
 export interface Skill {

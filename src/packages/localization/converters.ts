@@ -1,38 +1,40 @@
-import { CountryCodeIso3166Alpha2, CountryCodesIso3166Alpha2AndAlpha3 } from "./country-codes";
-import { CurrencyIso4217UpperCase } from "./currencies";
+import { COUNTRIES } from "./models/countries";
+import { CountryCodeIso3166Alpha2UpperCase } from "./models/countrycodeiso3166alpha2uppercase";
+import { CurrencyIso4217UpperCase } from "./models/currencyiso4217uppercase";
 
-export function convertToCountryCodeIso3166Alpha2(input: string): CountryCodeIso3166Alpha2 {
+export function convertToCountryCodeIso3166Alpha2UpperCase(
+  input: string,
+): CountryCodeIso3166Alpha2UpperCase {
   /**
-   * supports inputs: iso3166Alpha2, iso3166Alpha3, full country name TODO: (need to add some fuzzy search)
+   * accepts: iso3166alpha2, iso3166alpha3, countryName
    */
-  const inputUpperCase = input.toUpperCase();
-  let output;
-  if (inputUpperCase in CountryCodeIso3166Alpha2) {
-    output = inputUpperCase;
-  } else if (inputUpperCase.length == 3) {
+  input = input.toUpperCase();
+  let output: string | undefined;
+
+  if (input in CountryCodeIso3166Alpha2UpperCase) {
+    return input as CountryCodeIso3166Alpha2UpperCase; // TODO: remove AS
+  } else if (input.length == 3) {
     // probably Iso3166Alpha3
-    output = Object.entries(CountryCodesIso3166Alpha2AndAlpha3).find(
-      ([, val]) => val.alpha3 === inputUpperCase,
-    )?.[1].alpha2;
+    output = COUNTRIES.find((country) => country.countryCode.alpha3 == input)?.countryCode.alpha2;
   } else {
     // probably full country name
-    output = Object.entries(CountryCodesIso3166Alpha2AndAlpha3).find(
-      ([key]) => key.toUpperCase() === inputUpperCase,
-    )?.[1].alpha2;
+    output = COUNTRIES.find((country) => country.countryName.toUpperCase() == input)?.countryCode
+      .alpha2;
   }
 
-  // REMOVE AS
-  return output as CountryCodeIso3166Alpha2;
+  if (!output) {
+    throw Error(`Country code not found for input ${input}`);
+  }
+  return output as CountryCodeIso3166Alpha2UpperCase;
 }
 
 export function convertToCurrencyIso4217UpperCase(input: string): CurrencyIso4217UpperCase {
+  /**
+   * accepts iso4217
+   */
   const inputUpperCase = input.toUpperCase();
   if (inputUpperCase in CurrencyIso4217UpperCase) {
-    return inputUpperCase as CurrencyIso4217UpperCase;
-  } else if (inputUpperCase.length > 2) {
-    // TODO: full currency name case
+    return inputUpperCase as CurrencyIso4217UpperCase; // TODO: remove AS
   }
-
-  // REMOVE MOCK ?
-  return CurrencyIso4217UpperCase.PLN;
+  throw Error(`Currency not found for input ${input}`);
 }

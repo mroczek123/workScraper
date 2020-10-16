@@ -26,7 +26,8 @@ System currently consists from few main building blocks:
 
 ## Tech stack:
 
-FULLY JS
+- yarn
+  FULLY JS
 
 - Typescript
 - Webpack

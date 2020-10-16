@@ -1,10 +1,10 @@
 import {
-  convertToCountryCodeIso3166Alpha2,
+  convertToCountryCodeIso3166Alpha2UpperCase,
   convertToCurrencyIso4217UpperCase,
 } from "@src/packages/localization/converters";
-import { CountryCodeIso3166Alpha2 } from "@src/packages/localization/country-codes";
+import { CountryCodeIso3166Alpha2UpperCase } from "@src/packages/localization/models/countrycodeiso3166alpha2uppercase";
 import { JobOfferSimple, Location, Salary } from "@src/packages/offers/models";
-import { NoFluffJobsJobOfferSimple } from "./data-definitions/interfaces";
+import { NoFluffJobsJobOfferSimple } from "./data-definitions/classes";
 import {
   contractTypeToNormalizedEmploymentTypeMap,
   seniorityToNormalizedSeniorityMap,
@@ -48,8 +48,8 @@ export default function normalizer(
       const loc: Location = {
         city: location.city,
         countryCode: location.country
-          ? convertToCountryCodeIso3166Alpha2(location.country.code)
-          : CountryCodeIso3166Alpha2.Poland,
+          ? convertToCountryCodeIso3166Alpha2UpperCase(location.country.code)
+          : CountryCodeIso3166Alpha2UpperCase.Poland,
         street: location.street ? location.street : null,
         coordinates: null,
       };

@@ -2,7 +2,7 @@ import Axios, { AxiosResponse } from "axios";
 import { JobOfferSimple } from "../../offers/models";
 import normalize from "./normalizer";
 import { Site } from "../models";
-import { NoFluffJobsListResponse } from "./data-definitions/interfaces";
+import { NoFluffJobsListResponse } from "./data-definitions/classes";
 
 export default class NoFluffJobsSite extends Site {
   async getOffers(): Promise<Array<JobOfferSimple>> {
