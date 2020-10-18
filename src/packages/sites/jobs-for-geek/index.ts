@@ -10,7 +10,10 @@ export default class JobsForGeekSite extends Site {
       "https://jobsforgeek.com/api/public/job-offer",
     );
     return response.data.map((jobOffer) =>
-      normalize(jobOffer, `https://jobsforgeek.com/job-offers/details/${jobOffer.id}`),
+      normalize(
+        new JobsForGeekJobOfferSimple(jobOffer),
+        `https://jobsforgeek.com/job-offers/details/${jobOffer.id}`,
+      ),
     );
   }
 }

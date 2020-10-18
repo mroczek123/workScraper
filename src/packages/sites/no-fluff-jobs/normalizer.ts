@@ -14,7 +14,7 @@ export default function normalizer(
   jobOffer: NoFluffJobsJobOfferSimple,
   url: string,
 ): JobOfferSimple {
-  return {
+  return new JobOfferSimple({
     id: jobOffer.id,
     url: url,
     title: jobOffer.title,
@@ -29,7 +29,7 @@ export default function normalizer(
     seniority: jobOffer.seniority.map((seniority) => seniorityToNormalizedSeniorityMap[seniority]),
     mainTechnology: jobOffer.technology ? jobOffer.technology : null,
     locations: normalizeLocations(jobOffer),
-  };
+  });
 
   function normalizeSalary(input: NoFluffJobsJobOfferSimple): Array<Salary> {
     const output = [];

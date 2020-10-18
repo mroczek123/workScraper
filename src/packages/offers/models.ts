@@ -1,8 +1,8 @@
-import { GeoPosition } from "@src/packages/common/types";
+import { GeoPosition } from "@src/packages/common/classes";
 import { CountryCodeIso3166Alpha2UpperCase } from "../localization/models/countrycodeiso3166alpha2uppercase";
 import { CurrencyIso4217UpperCase } from "../localization/models/currencyiso4217uppercase";
 
-export interface JobOfferSimple {
+export class JobOfferSimple {
   id: string | number;
   url: string;
   title: string;
@@ -14,35 +14,79 @@ export interface JobOfferSimple {
   mainTechnology: string | null;
   locations: Array<Location>;
   seniority: Array<Seniority>;
+
+  constructor(data: JobOfferSimple) {
+    this.id = data.id;
+    this.url = data.url;
+    this.title = data.title;
+    this.salaries = data.salaries.map((salary) => new Salary(salary));
+    this.company = new Company(data.company);
+    this.publishedAt = data.publishedAt;
+    this.remote = data.remote;
+    this.remoteInterview = data.remoteInterview;
+    this.mainTechnology = data.mainTechnology;
+    this.locations = data.locations.map((location) => new Location(location));
+    this.seniority = data.seniority;
+  }
 }
 
-export interface JobOfferDetailed extends JobOfferSimple {
+export class JobOfferDetailed extends JobOfferSimple {
   description: string; // HTML
   skills: Array<Skill>;
+
+  constructor(data: JobOfferDetailed) {
+    super(data);
+    this.description = data.description;
+    this.skills = data.skills.map((skill) => new Skill(skill));
+  }
 }
 
-export interface Company {
+export class Company {
   logoUrl: string | null;
   name: string;
+
+  constructor(data: Company) {
+    this.logoUrl = data.logoUrl;
+    this.name = data.name;
+  }
 }
 
-export interface Salary {
+export class Salary {
   from: number | null;
   to: number | null;
   currency: CurrencyIso4217UpperCase | null;
   employmentType: EmploymentType | null;
+
+  constructor(data: Salary) {
+    this.from = data.from;
+    this.to = data.to;
+    this.currency = data.currency;
+    this.employmentType = data.employmentType;
+  }
 }
 
-export interface Location {
+export class Location {
   city: string;
   street: string | null;
   coordinates: GeoPosition | null;
   countryCode: CountryCodeIso3166Alpha2UpperCase;
+
+  constructor(data: Location) {
+    this.city = data.city;
+    this.street = data.street;
+    this.coordinates = data.coordinates ? new GeoPosition(data.coordinates) : null;
+    this.countryCode = data.countryCode;
+  }
 }
 
-export interface Skill {
+export class Skill {
   name: string;
   level: Seniority;
+
+  constructor(data: Skill) {
+    this.name = data.name;
+    this.level = data.level;
+  }
 }
 
 export enum Seniority {

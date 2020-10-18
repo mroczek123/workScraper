@@ -15,4 +15,3 @@ describe("frontend/app", () => {
     require("./main");
   });
 });
-

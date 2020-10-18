@@ -12,7 +12,7 @@ import { RemoteTypeChoices } from "./data-definitions/enums";
 import { JobsForGeekJobOfferSimple } from "./data-definitions/classes";
 
 export function normalize(input: JobsForGeekJobOfferSimple, urlstring: string): JobOfferSimple {
-  return {
+  return new JobOfferSimple({
     id: input.id,
     url: urlstring,
     title: input.jobTitle,
@@ -27,7 +27,7 @@ export function normalize(input: JobsForGeekJobOfferSimple, urlstring: string): 
     locations: normalizeLocations(input),
     seniority: normalizeSeniority(input),
     mainTechnology: "", // TODO
-  };
+  });
 
   function normalizeLocations(input: JobsForGeekJobOfferSimple): Array<Location> {
     const output: Array<Location> = [];

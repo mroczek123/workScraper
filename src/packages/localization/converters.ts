@@ -17,9 +17,10 @@ export function convertToCountryCodeIso3166Alpha2UpperCase(
     // probably Iso3166Alpha3
     output = COUNTRIES.find((country) => country.countryCode.alpha3 == input)?.countryCode.alpha2;
   } else {
-    // probably full country name
-    output = COUNTRIES.find((country) => country.countryName.toUpperCase() == input)?.countryCode
-      .alpha2;
+    // try UPPERCASE_WITH_DOWNSCORE_NAME
+    output = COUNTRIES.find(
+      (country) => country.countryName.toUpperCase().split(" ").join("_") == input,
+    )?.countryCode.alpha2;
   }
 
   if (!output) {

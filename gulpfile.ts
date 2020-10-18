@@ -7,6 +7,7 @@ const TESTS_LOCATIONS = [
   path.join(ROOT_PATH, "src", "api-server"),
   path.join(ROOT_PATH, "src", "frontend", "app"),
   path.join(ROOT_PATH, "src", "frontend", "server"),
+  path.join(ROOT_PATH, "src", "frontend", "packages"),
 ];
 
 const WEBPACK_CONFIGS_LOCATIONS = [
@@ -23,7 +24,7 @@ export async function build(): Promise<void> {
         cwd: ROOT_PATH,
       });
     } catch (e) {
-      throw Error(parseError(e));
+      throw Error(parseWebpackError(e));
     }
   });
 }
@@ -31,16 +32,12 @@ export async function build(): Promise<void> {
 export async function test(): Promise<void> {
   execSync("gulp build", { cwd: ROOT_PATH, stdio: "inherit" });
   TESTS_LOCATIONS.forEach((path) => {
-    try {
-      execSync("jest", { cwd: path, stdio: "inherit" });
-    } catch (e) {
-      throw Error(parseError(e));
-    }
+    execSync("jest", { cwd: path, stdio: "inherit" });
   });
   return;
 }
 
 // eslint-disable-next-line
-function parseError(e: any) {
+function parseWebpackError(e: any) {
   return e.output.reduce((acc: string, el: Buffer | null) => acc + (el ? el.toString() : ""), "");
 }

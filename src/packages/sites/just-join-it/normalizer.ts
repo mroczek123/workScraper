@@ -10,7 +10,7 @@ import {
 } from "./normalizer-mappings";
 
 export default function normalize(input: JustJoinItJobOfferSimple, url: string): JobOfferSimple {
-  return {
+  return new JobOfferSimple({
     id: input.id,
     url: url,
     title: input.title,
@@ -25,7 +25,7 @@ export default function normalize(input: JustJoinItJobOfferSimple, url: string):
     locations: normalizeLocations(input),
     seniority: [experienceLevelToNormalizedSeniorityMap[input.experience_level]],
     mainTechnology: input.marker_icon,
-  };
+  });
 
   function normalizeSalary(input: JustJoinItJobOfferSimple): Array<Salary> {
     const output: Array<Salary> = [];
