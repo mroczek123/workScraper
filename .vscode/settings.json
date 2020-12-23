@@ -2,5 +2,10 @@
   "javascript.validate.enable": true,
   "editor.tabSize": 2,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "npm.packageManager": "yarn"
+  "npm.packageManager": "yarn",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true
 }
